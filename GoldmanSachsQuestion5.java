@@ -1,6 +1,5 @@
 
 class Solution {
-    /* Function to get the nth ugly number*/
     long getNthUglyNo(int n) 
     {
         long ugly[] = new long[n];
