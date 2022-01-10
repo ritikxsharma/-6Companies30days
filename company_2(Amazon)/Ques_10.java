@@ -2,34 +2,44 @@ class Solution
 {
     void matchPairs(char nuts[], char bolts[], int n) 
     {
-        quick(nuts, 0 , n-1);
-        quick(bolts, 0 , n-1);
+        quickSort(nuts, 0 , n-1);
+        quickSort(bolts, 0 , n-1);
     }
     
-    void quick(char ch[], int i , int j)
+    static void quickSort(char a[],int lb, int ub)
     {
-        if(i >= j)
-            return;
-            
-        int idx = i-1;
-        int jdx = i;
-        
-        while(jdx < j)
-        {
-            if(ch[jdx] < ch[j])
-            {
-                idx++;
-                char temp = ch[jdx];
-                ch[jdx] = ch[idx];
-                ch[idx] = temp;
-            }
-            jdx++;
+       int x=0;
+       int i=lb;
+       int j=ub;
+       char t;
+       
+       while(i<j) 
+       {
+           while (a[i] < a[j] && x == 1) 
+               i++;
+
+           while (a[j] > a[i] && x == 0) 
+               j--;
+           
+           if (i < j) 
+           {
+               t = a[i];
+               a[i] = a[j];
+               a[j] = t;
+           }
+           
+           if (x == 0) 
+               x = 1;
+               
+           else 
+               x = 0;
         }
-        idx++;
-        char temp = ch[j];
-        ch[j] = ch[idx];
-        ch[idx] = temp;
-        quick(ch , i , idx-1);
-        quick(ch , idx+1 , j);
+       
+        if(lb<i)
+            quickSort(a,lb,i-1);
+       
+        if(ub>i)
+            quickSort(a,i+1,ub);
+       
     }
 }
