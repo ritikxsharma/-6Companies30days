@@ -1,11 +1,12 @@
 class Solution
 {
-    
-   public static boolean rootPath(Node node , int target , ArrayList<Node> path){
+   public static boolean rootPath(Node node , int target , ArrayList<Node> path)
+   {
+        if(node == null) 
+            return false;
         
-        if(node == null) return false;
-        
-        if(node.data == target){
+        if(node.data == target)
+        {
             path.add(node);
             return true;
         }
@@ -13,7 +14,8 @@ class Solution
         boolean L = rootPath(node.left , target , path);
         boolean R = rootPath(node.right , target , path);
         
-        if( L|| R){
+        if( L || R)
+        {
             path.add(node);
             return true;
         }
@@ -34,8 +36,8 @@ class Solution
         //     System.out.print( c.data +" " );
         // }
         
-        for(int i=0 ; i< path.size(); i++){
-            
+        for(int i=0 ; i< path.size(); i++)
+        {
             Node node = path.get(i);
             Node block = i > 0 ? path.get(i-1):null;
             
@@ -47,14 +49,19 @@ class Solution
         return timer;
      
     }
-    public static void BurnTree(Node node , Node block , int btime){
+    public static void BurnTree(Node node , Node block , int btime)
+    {
         
-        if(node == null) return;
+        if(node == null) 
+            return;
         
         timer= Math.max(timer , btime);
         
-        if(node.left != block) BurnTree(node.left , block , btime + 1);
-        if(node.right != block) BurnTree(node.right , block , btime + 1);
+        if(node.left != block) 
+            BurnTree(node.left , block , btime + 1);
+            
+        if(node.right != block) 
+            BurnTree(node.right , block , btime + 1);
         
     }
 }
